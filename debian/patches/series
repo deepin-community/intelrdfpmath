@@ -1,0 +1,5 @@
+debian-arches.patch
+inject-buildflags.patch
+abs-declaration.patch
+wchar_t.patch
+mongo-inteldfp-s390x.patch

@@ -1,0 +1,31 @@
+Description: Extend architecture support
+Author: Stephen Kitt <skitt@debian.org>
+Forwarded: not-needed
+
+This is based on
+https://github.com/mongodb/libmongocrypt/blob/master/cmake/IntelDFP.cmake
+
+--- a/LIBRARY/makefile.iml_head
++++ b/LIBRARY/makefile.iml_head
+@@ -177,7 +177,7 @@
+ # returned
+ # ==============================================================================
+ 
+-__INDICES__ = 1 2 3 4 5 6 7 8 9 10 11
++__INDICES__ = 1 2 3 4 5 6 7 8 9 10 11 12 13
+ 
+ GetIndex = $(strip $(word 1,$(if $(word $(words $(__INDICES__)),$2), \
+                $(error "List too large. Adjust __INDICES__"), \
+@@ -344,9 +344,9 @@
+     endif
+ endif
+ 
+-ARCH_ALIAS := x86  ia64 EM64T x86_64 i686 amd64 Intel64 sun4u
+-ARCH_LIST  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2
+-ARCH_TYPE  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2
++ARCH_ALIAS := x86  ia64 EM64T x86_64 i686 amd64 Intel64 sun4u arm  aarch64 powerpc64le riscv64
++ARCH_LIST  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2  IA32 EFI2    EFI2        EFI2
++ARCH_TYPE  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2  IA32 EFI2    EFI2        EFI2
+ ARCH_TYPES := IA32 IA64 EFI2
+ 
+ UARCH_LIST := SSE GSSE LRB LRB2

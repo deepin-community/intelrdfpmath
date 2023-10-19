@@ -1,4 +1,49 @@
 #!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+export DH_VERBOSE = 1
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND = -fPIC -O1
+
+include /usr/share/dpkg/default.mk
+include /usr/share/dpkg/buildtools.mk
 
 %:
 	dh $@
+
+override_dh_auto_clean:
+	$(MAKE) -C LIBRARY clean _HOST_ARCH=$(DEB_HOST_GNU_CPU)
+	rm -f LIBRARY/*.a
+
+override_dh_auto_build:
+# CC_NAME_INDEX and CC_INDEX point to the compiler type, gcc
+# _HOST_ARCH is the host architecture, normally detected using uname
+	set -e; for CALL_BY_REF in 0 1 ; do \
+		for GLOBAL_RND in 0 1 ; do \
+			for GLOBAL_FLAGS in 0 1 ; do \
+				dh_auto_build -DLIBRARY -- CC=$(CC) CC_NAME_INDEX=3 CC_INDEX=3 _HOST_ARCH=$(DEB_HOST_GNU_CPU) CALL_BY_REF=$${CALL_BY_REF} GLOBAL_RND=$${GLOBAL_RND} GLOBAL_FLAGS=$${GLOBAL_FLAGS} UNCHANGED_BINARY_FLAGS=0; \
+				mv LIBRARY/libbid.a LIBRARY/libbidgcc$${CALL_BY_REF}$${GLOBAL_RND}$${GLOBAL_FLAGS}.a; \
+				dh_auto_build -DLIBRARY -- CC_NAME_INDEX=3 CC_INDEX=3 _HOST_ARCH=$(DEB_HOST_GNU_CPU) clean; \
+				dh_auto_build -DLIBRARY -- CC=$(CC) CC_NAME_INDEX=3 CC_INDEX=3 _HOST_ARCH=$(DEB_HOST_GNU_CPU) CALL_BY_REF=$${CALL_BY_REF} GLOBAL_RND=$${GLOBAL_RND} GLOBAL_FLAGS=$${GLOBAL_FLAGS} UNCHANGED_BINARY_FLAGS=1; \
+				mv LIBRARY/libbid.a LIBRARY/libbidgcc$${CALL_BY_REF}$${GLOBAL_RND}$${GLOBAL_FLAGS}b.a; \
+				dh_auto_build -DLIBRARY -- CC_NAME_INDEX=3 CC_INDEX=3 _HOST_ARCH=$(DEB_HOST_GNU_CPU) clean; \
+			done \
+		done \
+	done
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	set -e; cd TESTS && for CALL_BY_REF in 0 1 ; do \
+		for GLOBAL_RND in 0 1 ; do \
+			for GLOBAL_FLAGS in 0 1 ; do \
+				rm -f readtest; \
+				make LIBEXT='gcc$$(CALL_BY_REF)$$(GLOBAL_RND)$$(GLOBAL_FLAGS).a' CC=$(CC) OS_TYPE=LINUX CALL_BY_REF=$${CALL_BY_REF} GLOBAL_RND=$${GLOBAL_RND} GLOBAL_FLAGS=$${GLOBAL_FLAGS} UNCHANGED_BINARY_FLAGS=0; \
+				timeout 30 ./readtest < readtest.in; \
+				rm -f readtest; \
+				make LIBEXT='gcc$$(CALL_BY_REF)$$(GLOBAL_RND)$$(GLOBAL_FLAGS)b.a' CC=$(CC) OS_TYPE=LINUX CALL_BY_REF=$${CALL_BY_REF} GLOBAL_RND=$${GLOBAL_RND} GLOBAL_FLAGS=$${GLOBAL_FLAGS} UNCHANGED_BINARY_FLAGS=1; \
+				timeout 30 ./readtest < readtest.in; \
+			done \
+		done \
+	done
+endif
