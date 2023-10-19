@@ -1,5 +1,76 @@
-template-repository (1.0-1) unstable; urgency=medium
+intelrdfpmath (2.0u2-8) unstable; urgency=medium
 
-  * Initial release
+  * Specify the host architecture when cleaning too.
+  * Lower the optimisation setting to -O1 and enable the test suite (at
+    -O2 the test suite loops endlessly).
+  * Move all the s390x architecture handling to the s390x-specific
+    patch.
+  * Fix the ppc64el architecture specifier.
+  * Describe the level of support in the package description. See
+    #1030701 and #1030726 for details.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Stephen Kitt <skitt@debian.org>  Wed, 08 Feb 2023 18:29:55 +0100
+
+intelrdfpmath (2.0u2-7) unstable; urgency=medium
+
+  * Stop pretending that all non-explicitly supported architectures are
+    equivalent to amd64 (which is what “EFI2” is in this library).
+    Instead, apply the definitions used in libmongocrypt, and import their
+    s390x support patch; per these definitions, 32-bit ARM is assumed to
+    behave like 32-bit x86, 64-bit ARM, ppc64le, and riscv64 are assumed
+    to behave like 64-bit x86. This doesn’t fix MIPS builds, but
+    libmongocrypt builds there are probably incorrect. Closes: #1030701.
+
+ -- Stephen Kitt <skitt@debian.org>  Mon, 06 Feb 2023 20:09:18 +0100
+
+intelrdfpmath (2.0u2-6) unstable; urgency=medium
+
+  * Mark the package “Multi-Arch: same”.
+  * Build the libraries with -fPIC so that they can be linked into
+    shared libraries.
+  * Standards-Version 4.6.2, no change required.
+  * Switch to the secure URL in debian/watch.
+  * Add missing patch headers.
+
+ -- Stephen Kitt <skitt@debian.org>  Thu, 26 Jan 2023 08:52:43 +0100
+
+intelrdfpmath (2.0u2-5) unstable; urgency=medium
+
+  * Use dh_auto_build instead of make directly, so that the package can
+    be cross-compiled.
+  * Standards-Version 4.6.0, no change required.
+
+ -- Stephen Kitt <skitt@debian.org>  Mon, 18 Apr 2022 15:23:37 +0200
+
+intelrdfpmath (2.0u2-4) unstable; urgency=medium
+
+  * Avoid conflicting declarations of wchar_t; thanks to Sébastien
+    Villemot for the patch! Closes: #972965.
+  * Ship the original README instead of the converted man page. Closes:
+    #972390.
+  * Standards-Version 4.5.1, no change required.
+
+ -- Stephen Kitt <skitt@debian.org>  Mon, 11 Jan 2021 22:55:21 +0100
+
+intelrdfpmath (2.0u2-3) unstable; urgency=medium
+
+  * Install bid_functions.h. Closes: #970820.
+  * Inject the build flags everywhere; thanks to Sébastien Villemot for
+    the patch! Closes: #970790.
+  * Ensure abs() is declared; thanks to Sébastien Villemot for the
+    patch! Closes: #970791.
+  * Add a watch file.
+
+ -- Stephen Kitt <skitt@debian.org>  Thu, 08 Oct 2020 21:10:31 +0200
+
+intelrdfpmath (2.0u2-2) unstable; urgency=medium
+
+  * Assume unknown architectures are “EFI2”.
+
+ -- Stephen Kitt <skitt@debian.org>  Thu, 23 Jul 2020 20:37:56 +0200
+
+intelrdfpmath (2.0u2-1) unstable; urgency=medium
+
+  * Initial release (Closes: #902791)
+
+ -- Christian Stalp <chris@chrishell.de>  Sat, 27 Jun 2020 12:07:20 +0200

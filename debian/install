@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "LIBRARY/*.a usr/lib/${DEB_HOST_MULTIARCH}/"
+echo LIBRARY/src/bid_conf.h usr/include/
+echo LIBRARY/src/bid_functions.h usr/include/
