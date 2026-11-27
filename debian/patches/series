@@ -3,3 +3,5 @@ inject-buildflags.patch
 abs-declaration.patch
 wchar_t.patch
 mongo-inteldfp-s390x.patch
+disable-test-werror.patch
+loongarch64.patch

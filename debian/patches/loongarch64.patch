@@ -1,0 +1,38 @@
+From 64a7e06b7941b83e32eebe84f4288749db221118 Mon Sep 17 00:00:00 2001
+From: Meng Sang <sangmeng@loongson.cn>
+Date: Mon, 25 Sep 2023 06:56:30 +0000
+Subject: [PATCH] Add loongarch64 support
+
+---
+ LIBRARY/makefile.iml_head | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/LIBRARY/makefile.iml_head b/LIBRARY/makefile.iml_head
+index 4a1b16b..2e04c93 100755
+--- a/LIBRARY/makefile.iml_head
++++ b/LIBRARY/makefile.iml_head
+@@ -177,7 +177,7 @@ GenTypeVarList = $(call PrefixSuffix,$1,$(if $2, \
+ # returned
+ # ==============================================================================
+ 
+-__INDICES__ = 1 2 3 4 5 6 7 8 9 10 11 12 13 14
++__INDICES__ = 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+ 
+ GetIndex = $(strip $(word 1,$(if $(word $(words $(__INDICES__)),$2), \
+                $(error "List too large. Adjust __INDICES__"), \
+@@ -344,9 +344,9 @@ else
+     endif
+ endif
+ 
+-ARCH_ALIAS := x86  ia64 EM64T x86_64 i686 amd64 Intel64 sun4u arm  aarch64 powerpc64le riscv64 s390x
+-ARCH_LIST  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2  IA32 EFI2    EFI2        EFI2    S390X
+-ARCH_TYPE  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2  IA32 EFI2    EFI2        EFI2    S390X
++ARCH_ALIAS := x86  ia64 EM64T x86_64 i686 amd64 Intel64 sun4u arm  aarch64 powerpc64le riscv64 s390x loongarch64
++ARCH_LIST  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2  IA32 EFI2    EFI2        EFI2    S390X EFI2
++ARCH_TYPE  := IA32 IA64 EFI2  EFI2   IA32 EFI2  EFI2    EFI2  IA32 EFI2    EFI2        EFI2    S390X EFI2
+ ARCH_TYPES := IA32 IA64 EFI2 S390X
+ 
+ UARCH_LIST := SSE GSSE LRB LRB2
+-- 
+2.40.1
+

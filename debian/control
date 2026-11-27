@@ -1,9 +1,9 @@
 Source: intelrdfpmath
 Priority: optional
-Maintainer: Christian Stalp <chris@chrishell.de>
+Maintainer: Christian Stalp <christian.stalp@mailbox.org>
 Uploaders: Stephen Kitt <skitt@debian.org>
 Build-Depends: debhelper-compat (= 13)
-Standards-Version: 4.6.2
+Standards-Version: 4.7.0
 Section: libdevel
 Homepage: https://software.intel.com/en-us/articles/intel-decimal-floating-point-math-library
 Vcs-Browser: https://salsa.debian.org/debian/intelrdfpmath

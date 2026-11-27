@@ -9,7 +9,7 @@ Last-Update: 2020-09-23
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/LIBRARY/makefile
 +++ b/LIBRARY/makefile
-@@ -349,12 +349,12 @@
+@@ -351,12 +351,12 @@
  $(OBJ_DIR)/bid32_div.$O    :: $(SRC_DIR)/bid_div_macros.h
  
  $(BID_TRANS_OBJS)    :: $(OBJ_DIR)/%.$O : $(SRC_DIR)/%.c $(SRC_DIR)/bid_trans.h
@@ -24,7 +24,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  
  $(SRC_DIR)/bid_trans.h : $(SRC_DIR)/bid_internal.h
  	touch $@
-@@ -399,7 +399,7 @@
+@@ -401,7 +401,7 @@
  F128_PLATFORM_FLAGS := $(foreach n, IML_HOST_ARCH IML_HOST_OS CC_NAME \
                          ,-D$(call ToLower,$($n)))
  
@@ -33,7 +33,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
  
  F128_HDR_NAMES := bessel cons int  lgamma powi sqrt     bid  erf inv_hyper \
                    log    pow  trig cbrt   exp  inv_trig mod
-@@ -430,7 +430,7 @@
+@@ -432,7 +432,7 @@
  $(F128_HDR_OBJS) :: $(OBJ_DIR)/dpml_ux_%.$O : $(F128_DIR)/dpml_%_x.h
  
  $(F128_OBJS) :: $(OBJ_DIR)/%.$O : $(F128_DIR)/%.c $(F128_DIR)/dpml_ux.h
