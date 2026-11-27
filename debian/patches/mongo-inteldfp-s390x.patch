@@ -75,7 +75,7 @@ Bug-Debian: https://bugs.debian.org/1030701
  
  #	define BITS_PER_CHAR    8
 -#	define BITS_PER_SHORT  16
-+#	define BITS_PER_SHORT  16
++#	define BITS_PER_SHORT  16
  #	define BITS_PER_INT    32
  #       if (OP_SYSTEM == linux)
  #    	    define BITS_PER_LONG   64
@@ -126,17 +126,6 @@ Bug-Debian: https://bugs.debian.org/1030701
 +signed char i1_8, i2_8;
  
  unsigned int expected_status;
- 
---- a/LIBRARY/float128/dpml_ux.h
-+++ b/LIBRARY/float128/dpml_ux.h
-@@ -127,7 +127,7 @@
- #define UX_MSB		      ((U_WORD)1 <<(BITS_PER_UX_FRACTION_DIGIT_TYPE-1))
- #define UX_OVERFLOW_EXPONENT  (1 << F_EXP_WIDTH)
- #define UX_UNDERFLOW_EXPONENT (- UX_OVERFLOW_EXPONENT)
--#define UX_ZERO_EXPONENT      (- (UX_EXPONENT_TYPE) 1 << (F_EXP_WIDTH + 2))
-+#define UX_ZERO_EXPONENT      (- ((UX_EXPONENT_TYPE) 1 << (F_EXP_WIDTH + 2)))
- #define UX_INFINITY_EXPONENT  (-(UX_ZERO_EXPONENT + 1)) 
- 
  
 --- a/LIBRARY/makefile.iml_head
 +++ b/LIBRARY/makefile.iml_head

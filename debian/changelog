@@ -1,3 +1,19 @@
+intelrdfpmath (2.0u3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Standards-Version 4.7.0, no change required.
+
+ -- Stephen Kitt <skitt@debian.org>  Tue, 21 May 2024 12:52:44 +0200
+
+intelrdfpmath (2.0u2-9) unstable; urgency=medium
+
+  * Disable -Werror in tests. Closes: #1037527.
+  * Add LoongArch support. Thanks to Meng Sang for the patch! Closes:
+    #1052604.
+  * Update Christian’s email address.
+
+ -- Stephen Kitt <skitt@debian.org>  Sat, 09 Dec 2023 20:12:09 +0100
+
 intelrdfpmath (2.0u2-8) unstable; urgency=medium
 
   * Specify the host architecture when cleaning too.

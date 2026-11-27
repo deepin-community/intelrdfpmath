@@ -14,7 +14,7 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +#include <stdlib.h>
  #include "bid_trans.h"
  
- static BID_UINT128 BID128_0 = {BID128_LH_INIT( 0x0000000000000000ull, 0x3040000000000000ull )};
+ int abs(int);
 --- a/LIBRARY/src/bid32_pow.c
 +++ b/LIBRARY/src/bid32_pow.c
 @@ -28,6 +28,7 @@
@@ -34,4 +34,4 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 +#include <stdlib.h>
  #include "bid_trans.h"
  
- #define BID64_0 0x31c0000000000000ull
+ int abs(int);
